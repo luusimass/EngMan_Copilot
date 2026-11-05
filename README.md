@@ -6,8 +6,7 @@
 
 
 ## Problema abordado
-A Engenharia de Manutenção da Motiva precisa lidar com falhas em ativos eletroeletrônicos presentes nas rodovias concedidas. Para realizar diagnósticos e definir intervenções adequadas, os profissionais precisam consultar informações técnicas, históricos de falhas, procedimentos operacionais e indicadores de criticidade. A dificuldade de localizar e relacionar essas informações pode tornar o diagnóstico mais demorado, dificultar a identificação de falhas recorrentes e prejudicar a priorização das atividades de manutenção.
-O EngMan Copilot propõe utilizar Inteligência Artificial Generativa combinada à técnica RAG (Retrieval-Augmented Generation) para apoiar os profissionais na consulta dessas informações, na identificação de possíveis causas e na elaboração de recomendações fundamentadas em documentos disponíveis. O assistente terá caráter consultivo: não substituirá a avaliação de profissionais habilitados nem executará intervenções nos equipamentos.
+A Motiva destaca o desafio de evoluir a Engenharia de Manutenção por meio de uma abordagem orientada à confiabilidade dos ativos eletroeletrônicos rodoviários. A proposta envolve utilizar o histórico de falhas para apoiar a definição de estratégias de manutenção preventiva, inspeção e manutenção baseada em condição (CBM), além de avaliar a necessidade de retrofit. Nesse contexto, o EngMan Copilot busca facilitar o acesso às informações técnicas e históricas necessárias para apoiar essas análises, respeitando os limites dos dados disponíveis.
 
 
 ## Recorte e persona
