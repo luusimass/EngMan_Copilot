@@ -57,11 +57,12 @@ A arquitetura proposta utiliza Inteligência Artificial Generativa, RAG e ferram
 ## Stack e justificativa técnica
 ### Modelos de linguagem (LLM)
 
-Critério | Llama 3.1 8B | Qwen2.5 7B 
-Tipo | Modelo de linguagem aberto | Modelo de linguagem aberto 
-Execução proposta | Local, via Ollama | Local, via Ollama 
-Ponto de avaliação | Qualidade das respostas e aderência às instruções | Qualidade das respostas e aderência às instruções 
-Trade-off | Pode exigir mais recursos computacionais | Pode apresentar diferenças de desempenho conforme a tarefa 
+|Critério | Llama 3.1 8B | Qwen2.5 7B |
+|---|---|---|
+|Tipo | Modelo de linguagem aberto | Modelo de linguagem aberto |
+|Execução proposta | Local, via Ollama | Local, via Ollama |
+|Ponto de avaliação | Qualidade das respostas e aderência às instruções | Qualidade das respostas e aderência às instruções |
+|Trade-off | Pode exigir mais recursos computacionais | Pode apresentar diferenças de desempenho conforme a tarefa |
 
 ### Bancos vetoriais
 | Critério | Chroma | FAISS 
