@@ -6,5 +6,5 @@ Recorte escolhido: A - Diagnostico e Confiabilidade
 Integrantes:
 Anna Luisa Santos de Lima - RM 575081 - 1CCPR
 
-Repositorio: https: /github.com/usuario/engman-copilot
+Repositorio: https://github.com/luusimass/EngMan_Copilot/tree/main
 Fluxograma: https: /excalidraw.com/#link-publico
