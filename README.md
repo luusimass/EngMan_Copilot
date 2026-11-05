@@ -136,13 +136,12 @@ O conjunto de avaliação será utilizado para verificar a qualidade, a seguran�
 ## Tools especificadas
 As ferramentas permitirão que o assistente consulte informações estruturadas, sem depender exclusivamente da interpretação de documentos. Os parâmetros, tipos de dados, descrições e valores permitidos serão formalizados em JSON Schema. As ferramentas deverão retornar apenas informações disponíveis nas fontes simuladas ou documentadas.
 
-
-|Tool proposta | Função | Parâmetros principais| 
+| Tool proposta | Função | Parâmetros principais |
 |---|---|---|
-|`consultar_ativo_por_tag` | Recuperar o cadastro de um equipamento | `tag` |
-|`consultar_historico_falhas` | Consultar falhas e intervenções anteriores | `tag`, `limite_registros` |
-|`consultar_procedimento` | Recuperar procedimentos aplicáveis ao ativo | `tipo_ativo`, `tipo_procedimento` |
-|`calcular_prioridade` | Apoiar a classificação de prioridade com critérios definidos | `criticidade`, `impacto_seguranca`, `impacto_arrecadacao`, `disponibilidade` |
+| `consultar_ativo_por_tag` | Recuperar o cadastro de um equipamento pelo seu identificador TAG | `tag` |
+| `consultar_historico_falhas` | Consultar falhas e intervenções anteriores de um ativo | `tag`, `data_inicio`, `data_fim`, `limite_registros` |
+| `consultar_procedimento` | Recuperar procedimentos operacionais e documentos técnicos relacionados ao sintoma ou ativo | `tag`, `sintoma`, `tipo_intervencao` |
+| `calcular_prioridade` | Apoiar a classificação da prioridade de uma ocorrência com base na matriz de criticidade | `tag`, `descricao_ocorrencia` |
 
 
 ## Riscos e mitigações
