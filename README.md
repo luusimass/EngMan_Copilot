@@ -12,6 +12,11 @@ O EngMan Copilot propõe utilizar Inteligência Artificial Generativa combinada 
 
 
 ## Recorte e persona
+Recorte A — Diagnóstico e Confiabilidade
+
+### Delimitação inicial do domínio
+Para a primeira versão do EngMan Copilot, foi definido um domínio de atuação específico: equipamentos de CFTV, especialmente câmeras PTZ. Essa delimitação permite desenvolver e avaliar as funcionalidades de consulta por TAG, recuperação de histórico de falhas, identificação de possíveis causas e apoio à priorização de ocorrências em um contexto técnico mais controlado.
+Embora a base de conhecimento contenha um inventário simulado de diferentes categorias de ativos eletroeletrônicos, o atendimento funcional inicial do assistente ficará restrito aos equipamentos de CFTV/PTZ. As demais categorias serão utilizadas como parte da estrutura demonstrativa do inventário e poderão ser consideradas em futuras expansões do projeto.
 ### Recorte A — Diagnóstico e Confiabilidade
 
 ### Persona principal — Engenheiro de Manutenção
@@ -19,11 +24,12 @@ O Engenheiro de Manutenção é responsável por analisar ocorrências, identifi
 
 
 ## Escopo do assistente
+
 ### O que o EngMan Copilot fará
-- Consultar informações cadastrais dos ativos por meio da TAG.
-- Recuperar o histórico de falhas e intervenções.
+- Consultar informações cadastrais de ativos CFTV/PTZ por meio da TAG.
+- Recuperar o histórico de falhas e intervenções desses equipamentos.
 - Identificar possíveis padrões de reincidência.
-- Consultar procedimentos de manutenção preventiva e inspeção.
+- Consultar procedimentos de manutenção preventiva e inspeção aplicáveis ao domínio definido.
 - Apresentar hipóteses de causas prováveis para falhas relatadas.
 - Consultar critérios de criticidade e apoiar a priorização.
 - Recomendar o tipo de intervenção mais adequado entre corretiva, preventiva, inspeção e manutenção baseada em condição (CBM).
@@ -32,12 +38,12 @@ O Engenheiro de Manutenção é responsável por analisar ocorrências, identifi
 - Indicar quando não houver dados suficientes para responder.
 
 ### O que o EngMan Copilot recusará
+- Responder sobre ativos que não estejam contemplados no domínio funcional inicial.
 - Inventar TAGs, modelos, números de série, métricas ou históricos.
 - Emitir laudos técnicos, pareceres de engenharia ou ART.
 - Autorizar ou executar intervenções físicas.
 - Substituir procedimentos oficiais de segurança.
 - Orientar intervenções elétricas que contrariem ou substituam procedimentos oficiais e requisitos aplicáveis das NR-10 e NR-35.
-- Responder a assuntos fora do escopo definido.
 - Utilizar dados pessoais ou informações operacionais confidenciais sem autorização.
 
 
@@ -76,7 +82,8 @@ A combinação inicial a ser avaliada será **Llama 3.1 8B + Ollama + Chroma**, 
 
 
 ## Base de conhecimento
-A base de conhecimento será organizada para permitir a recuperação de informações técnicas relevantes durante o atendimento. Na Sprint 01, será entregue o inventário dos documentos previstos, com seus respectivos campos e origens. Os dados de ativos e históricos serão sintéticos, identificados expressamente como simulados, pois não representam registros reais da Motiva.
+A base de conhecimento será organizada para permitir a recuperação de informações técnicas relevantes durante o atendimento. Na Sprint 01, será apresentado um inventário simulado com 30 ativos de diferentes categorias de equipamentos eletroeletrônicos rodoviários. Apesar da diversidade do inventário, o domínio funcional inicial do EngMan Copilot será restrito a câmeras CFTV, especialmente equipamentos PTZ. Os demais ativos integram a estrutura demonstrativa da base de conhecimento e representam possibilidades de expansão futura.
+Os dados de ativos e históricos serão sintéticos, identificados expressamente como simulados, pois não representam registros reais da Motiva.
 
 ### Documentos previstos
 |Documento | Conteúdo principal | Teor|
