@@ -65,10 +65,11 @@ A arquitetura proposta utiliza Inteligência Artificial Generativa, RAG e ferram
 |Trade-off | Pode exigir mais recursos computacionais | Pode apresentar diferenças de desempenho conforme a tarefa |
 
 ### Bancos vetoriais
-| Critério | Chroma | FAISS 
-Finalidade | Armazenamento e recuperação vetorial | Busca por similaridade vetorial 
-Ponto de avaliação | Facilidade de integração e gerenciamento de documentos | Desempenho e flexibilidade na busca 
-Trade-off | Camada de gerenciamento mais simples | Exige maior estruturação da aplicação ao redor da busca 
+| Critério | Chroma | FAISS |
+|---|---|---|
+|Finalidade | Armazenamento e recuperação vetorial | Busca por similaridade vetorial |
+|Ponto de avaliação | Facilidade de integração e gerenciamento de documentos | Desempenho e flexibilidade na busca |
+|Trade-off | Camada de gerenciamento mais simples | Exige maior estruturação da aplicação ao redor da busca |
 
 ### Escolha 
 A combinação inicial a ser avaliada será **Llama 3.1 8B + Ollama + Chroma**, considerando a possibilidade de execução local e a facilidade de organização da base documental.  A alternativa Qwen2.5 7B e o FAISS serão mantidos como referências de comparação. A escolha final dependerá dos testes e dos recursos computacionais disponíveis.
@@ -78,17 +79,18 @@ A combinação inicial a ser avaliada será **Llama 3.1 8B + Ollama + Chroma**, 
 A base de conhecimento será organizada para permitir a recuperação de informações técnicas relevantes durante o atendimento. Na Sprint 01, será entregue o inventário dos documentos previstos, com seus respectivos campos e origens. Os dados de ativos e históricos serão sintéticos, identificados expressamente como simulados, pois não representam registros reais da Motiva.
 
 ### Documentos previstos
-Documento | Conteúdo principal | Origem 
-Catálogo de ativos | TAG, tipo, fabricante, modelo, localização e criticidade | Simulado 
-Plano de manutenção preventiva | Tarefas, periodicidade, responsáveis e recursos | Simulado 
-Histórico de falhas | TAG, data, sintoma, causa identificada e reparo | Simulado 
-Procedimentos operacionais (POPs) | Inspeção, limpeza, ajustes e testes | Simulado 
-Fichas técnicas | Especificações dos equipamentos | Real e simulado 
-Matriz de criticidade | Impactos e critérios de priorização | Simulado 
-Glossário de siglas | CFTV, CBM, RCM, MTBF, MTTR e demais termos | Real 
-Normas e requisitos de segurança | Resumos dos requisitos aplicáveis de NR-10 e NR-35 | Real 
-Briefing Motiva | Contexto do desafio e informações institucionais | Real 
-Boletins de ocorrência | Relatos técnicos e condições observadas em campo | Simulado 
+|Documento | Conteúdo principal | Teor|
+|---|---|---|
+|Catálogo de ativos | TAG, tipo, fabricante, modelo, localização e criticidade | Simulado| 
+|Plano de manutenção preventiva | Tarefas, periodicidade, responsáveis e recursos | Simulado| 
+|Histórico de falhas | TAG, data, sintoma, causa identificada e reparo | Simulado| 
+|Procedimentos operacionais (POPs) | Inspeção, limpeza, ajustes e testes | Simulado| 
+|Fichas técnicas | Especificações dos equipamentos | Simulado| 
+|Matriz de criticidade | Impactos e critérios de priorização | Simulado| 
+|Glossário de siglas | CFTV, CBM, RCM, MTBF, MTTR e demais termos | Real| 
+|Normas e requisitos de segurança | Resumos dos requisitos aplicáveis de NR-10 e NR-35 | Real| 
+|Briefing Motiva | Contexto do desafio e informações institucionais | Real| 
+|Boletins de ocorrência | Relatos técnicos e condições observadas em campo | Simulado|
 
 ### RAG
 
@@ -119,40 +121,43 @@ O system prompt será desenvolvido em português do Brasil e estruturado em sete
 ## Eval set
 O conjunto de avaliação será utilizado para verificar a qualidade, a segurança e a aderência do assistente ao escopo definido. Cada caso conterá os campos `id`, `categoria`, `entrada_usuario`, `contexto_esperado`, `resposta_ideal`, `criterios_avaliacao` e `deve_recusar`.
 
-Categoria | Objetivo 
-factual | Verificar a recuperação correta de informações presentes na base 
-instrucional | Avaliar a elaboração de orientações e rascunhos de ordens de serviço 
-ambíguo | Verificar se o assistente solicita esclarecimentos 
-dado_inexistente | Avaliar se reconhece a ausência de informações 
-out_of_scope | Verificar a recusa de assuntos fora do domínio 
-jailbreak | Avaliar a resistência a tentativas de manipulação 
-risco_operacional | Verificar a recusa de orientações perigosas 
-memoria_contexto | Avaliar a coerência com informações anteriores da conversa 
+|Categoria | Objetivo|
+|---|---|
+|Factual | Verificar a recuperação correta de informações presentes na base| 
+|Instrucional | Avaliar a elaboração de orientações e rascunhos de ordens de serviço| 
+|Ambíguo | Verificar se o assistente solicita esclarecimentos|
+|Dado_inexistente | Avaliar se reconhece a ausência de informações| 
+|Out_of_scope | Verificar a recusa de assuntos fora do domínio| 
+|Jailbreak | Avaliar a resistência a tentativas de manipulação| 
+|Risco_operacional | Verificar a recusa de orientações perigosas| 
+|Memoria_contexto | Avaliar a coerência com informações anteriores da conversa| 
 
 
 ## Tools especificadas
 As ferramentas permitirão que o assistente consulte informações estruturadas, sem depender exclusivamente da interpretação de documentos. Os parâmetros, tipos de dados, descrições e valores permitidos serão formalizados em JSON Schema. As ferramentas deverão retornar apenas informações disponíveis nas fontes simuladas ou documentadas.
 
 
-Tool proposta | Função | Parâmetros principais 
-`consultar_ativo_por_tag` | Recuperar o cadastro de um equipamento | `tag` 
-`consultar_historico_falhas` | Consultar falhas e intervenções anteriores | `tag`, `limite_registros` 
-`consultar_procedimento` | Recuperar procedimentos aplicáveis ao ativo | `tipo_ativo`, `tipo_procedimento` 
-`calcular_prioridade` | Apoiar a classificação de prioridade com critérios definidos | `criticidade`, `impacto_seguranca`, `impacto_arrecadacao`, `disponibilidade` 
+|Tool proposta | Função | Parâmetros principais| 
+|---|---|---|
+|`consultar_ativo_por_tag` | Recuperar o cadastro de um equipamento | `tag` |
+|`consultar_historico_falhas` | Consultar falhas e intervenções anteriores | `tag`, `limite_registros` |
+|`consultar_procedimento` | Recuperar procedimentos aplicáveis ao ativo | `tipo_ativo`, `tipo_procedimento` |
+|`calcular_prioridade` | Apoiar a classificação de prioridade com critérios definidos | `criticidade`, `impacto_seguranca`, `impacto_arrecadacao`, `disponibilidade` |
 
 
 ## Riscos e mitigações
 O projeto considera os riscos associados à utilização de Inteligência Artificial em um ambiente de infraestrutura rodoviária.
 
-Risco | Impacto | Mitigação proposta 
-Alucinação | Decisões técnicas incorretas | Restringir respostas à base e às tools; informar ausência de dados 
-Prompt injection | Manipulação das instruções | Guardrail de entrada e testes de jailbreak 
-Risco operacional | Acidentes e danos físicos | Recusar orientações perigosas e encaminhar aos procedimentos oficiais 
-Viés na priorização | Priorização inadequada de ativos | Utilizar critérios explícitos e auditáveis 
-Exposição de dados pessoais | Violação de privacidade | Não incluir dados pessoais na base 
-Confidencialidade operacional | Exposição de informações internas | Utilizar dados simulados e avaliar execução local 
-Excesso de confiança | Hipóteses tratadas como diagnósticos confirmados | Diferenciar fato e hipótese e exigir validação humana 
-Perda de contexto | Associação incorreta entre ativos | Reforçar a TAG consultada e controlar o histórico 
+|Risco | Impacto | Mitigação proposta |
+|---|---|---|
+|Alucinação | Decisões técnicas incorretas | Restringir respostas à base e às tools; informar ausência de dados |
+|Prompt injection | Manipulação das instruções | Guardrail de entrada e testes de jailbreak |
+|Risco operacional | Acidentes e danos físicos | Recusar orientações perigosas e encaminhar aos procedimentos oficiais |
+|Viés na priorização | Priorização inadequada de ativos | Utilizar critérios explícitos e auditáveis |
+|Exposição de dados pessoais | Violação de privacidade | Não incluir dados pessoais na base |
+|Confidencialidade operacional | Exposição de informações internas | Utilizar dados simulados e avaliar execução local |
+|Excesso de confiança | Hipóteses tratadas como diagnósticos confirmados | Diferenciar fato e hipótese e exigir validação humana |
+|Perda de contexto | Associação incorreta entre ativos | Reforçar a TAG consultada e controlar o histórico| 
 
 
 ## Limitações conhecidas
