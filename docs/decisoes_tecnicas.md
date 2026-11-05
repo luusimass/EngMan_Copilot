@@ -247,7 +247,7 @@ O assistente não deverá executar ações físicas, autorizar intervenções ou
 - A escolha do modelo precisa ser validada experimentalmente.
 - A base de conhecimento inicial é simulada.
 - O desempenho depende da qualidade dos documentos e dos embeddings.
-- A precisão das métricas depende da disponibilidade de dados operacionais.
+- A qualidade das análises de confiabilidade depende da disponibilidade e da consistência dos dados operacionais.
 - Não há integração com sistemas reais da Motiva nesta etapa.
 - A classificação de prioridade depende de uma matriz validada pela Engenharia de Manutenção.
 
