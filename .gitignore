@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Segurança e credenciais
+.env.*
+*.key
+*.pem
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
