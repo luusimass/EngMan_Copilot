@@ -1,3 +1,4 @@
+
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "project": "EngMan Copilot",
@@ -299,107 +300,6 @@
           "dados_faltantes",
           "justificativa",
           "fonte_matriz"
-        ],
-        "additionalProperties": false
-      }
-    },
-    {
-      "name": "calcular_metricas_confiabilidade",
-      "description": "Ferramenta complementar para calcular métricas de confiabilidade a partir de dados de operação e falhas disponíveis. Não deve estimar resultados quando os dados forem insuficientes.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "tag": {
-            "type": "string",
-            "description": "TAG do ativo analisado.",
-            "minLength": 1
-          },
-          "metrica": {
-            "type": "string",
-            "enum": ["lambda", "R(t)", "RGA", "LDA"],
-            "description": "Métrica ou método de análise solicitado."
-          },
-          "tempo_operacao": {
-            "type": ["number", "null"],
-            "exclusiveMinimum": 0,
-            "description": "Tempo total de operação observado, na unidade informada."
-          },
-          "quantidade_falhas": {
-            "type": ["integer", "null"],
-            "minimum": 0
-          },
-          "tempo_missao": {
-            "type": ["number", "null"],
-            "exclusiveMinimum": 0,
-            "description": "Tempo de missão utilizado no cálculo de R(t), na mesma unidade do tempo de operação."
-          },
-          "tempos_ate_falha": {
-            "type": "array",
-            "items": {
-              "type": "number",
-              "exclusiveMinimum": 0
-            },
-            "description": "Tempos observados até a falha, necessários para análises baseadas em dados de vida."
-          },
-          "unidade_tempo": {
-            "type": "string",
-            "enum": ["horas", "dias", "meses", "anos"]
-          },
-          "modelo_estatistico": {
-            "type": ["string", "null"],
-            "enum": ["exponencial", "weibull", null]
-          }
-        },
-        "required": ["tag", "metrica", "unidade_tempo"],
-        "additionalProperties": false
-      },
-      "output_schema": {
-        "type": "object",
-        "properties": {
-          "tag": {
-            "type": "string"
-          },
-          "metrica": {
-            "type": "string"
-          },
-          "resultado": {
-            "type": ["number", "null"]
-          },
-          "unidade": {
-            "type": ["string", "null"]
-          },
-          "metodo_utilizado": {
-            "type": "string"
-          },
-          "premissas": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "dados_faltantes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "interpretacao": {
-            "type": "string"
-          },
-          "fonte_dados": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "tag",
-          "metrica",
-          "resultado",
-          "unidade",
-          "metodo_utilizado",
-          "premissas",
-          "dados_faltantes",
-          "interpretacao",
-          "fonte_dados"
         ],
         "additionalProperties": false
       }
