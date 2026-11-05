@@ -202,7 +202,8 @@ A fragmentação inicial seguirá os parâmetros documentados em `data/knowledge
 
 ## 7. Estratégia de utilização das ferramentas
 
-O EngMan Copilot contará com ferramentas especializadas para acessar informações estruturadas.
+O EngMan Copilot contará com ferramentas especializadas para acessar informações estruturadas. A execução de uma ferramenta não garante que os dados sejam suficientes para concluir um diagnóstico. O modelo deverá informar limitações e solicitar avaliação humana quando necessário.
+As ferramentas deverão respeitar os contratos definidos em `tools/tools_spec.json`.
 
 | Ferramenta | Finalidade |
 |---|---|
@@ -210,11 +211,7 @@ O EngMan Copilot contará com ferramentas especializadas para acessar informaç�
 | `consultar_historico_falhas` | Consultar ocorrências anteriores. |
 | `consultar_procedimento` | Recuperar procedimentos relacionados ao sintoma. |
 | `calcular_prioridade` | Apoiar a classificação de prioridade. |
-| `calcular_metricas_confiabilidade` | Recurso complementar para análises de confiabilidade. |
 
-As ferramentas deverão respeitar os contratos definidos em `tools/tools_spec.json`.
-
-A execução de uma ferramenta não garante que os dados sejam suficientes para concluir um diagnóstico. O modelo deverá informar limitações e solicitar avaliação humana quando necessário.
 
 ## 8. Parâmetros iniciais do modelo
 
