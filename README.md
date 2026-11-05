@@ -1,13 +1,12 @@
 # EngMan Copilot — FIAP × Motiva
+*CIRA — Confiabilidade Inteligente e Reconhecimento de Alterações*
 
 ## Identificação
-CIRA - Confiabilidade Inteligente e Reconhecimento de Alterações
 - Anna Luisa Santos de Lima - RM 575081 - 1CCPR
 
 
 ## Problema abordado
 A Engenharia de Manutenção da Motiva precisa lidar com falhas em ativos eletroeletrônicos presentes nas rodovias concedidas. Para realizar diagnósticos e definir intervenções adequadas, os profissionais precisam consultar informações técnicas, históricos de falhas, procedimentos operacionais e indicadores de criticidade. A dificuldade de localizar e relacionar essas informações pode tornar o diagnóstico mais demorado, dificultar a identificação de falhas recorrentes e prejudicar a priorização das atividades de manutenção.
-
 O EngMan Copilot propõe utilizar Inteligência Artificial Generativa combinada à técnica RAG (Retrieval-Augmented Generation) para apoiar os profissionais na consulta dessas informações, na identificação de possíveis causas e na elaboração de recomendações fundamentadas em documentos disponíveis. O assistente terá caráter consultivo: não substituirá a avaliação de profissionais habilitados nem executará intervenções nos equipamentos.
 
 
@@ -17,14 +16,12 @@ Recorte A — Diagnóstico e Confiabilidade
 ### Delimitação inicial do domínio
 Para a primeira versão do EngMan Copilot, foi definido um domínio de atuação específico: equipamentos de CFTV, especialmente câmeras PTZ. Essa delimitação permite desenvolver e avaliar as funcionalidades de consulta por TAG, recuperação de histórico de falhas, identificação de possíveis causas e apoio à priorização de ocorrências em um contexto técnico mais controlado.
 Embora a base de conhecimento contenha um inventário simulado de diferentes categorias de ativos eletroeletrônicos, o atendimento funcional inicial do assistente ficará restrito aos equipamentos de CFTV/PTZ. As demais categorias serão utilizadas como parte da estrutura demonstrativa do inventário e poderão ser consideradas em futuras expansões do projeto.
-### Recorte A — Diagnóstico e Confiabilidade
 
 ### Persona principal — Engenheiro de Manutenção
 O Engenheiro de Manutenção é responsável por analisar ocorrências, identificar reincidências, avaliar a criticidade dos equipamentos e definir estratégias de manutenção. O principal desafio dessa persona é tomar decisões fundamentadas em informações técnicas e históricas, evitando conclusões sem evidências suficientes. Por isso, o assistente deverá apresentar fontes, diferenciar fatos de hipóteses e indicar o nível de confiança das respostas.
 
 
 ## Escopo do assistente
-
 ### O que o EngMan Copilot fará
 - Consultar informações cadastrais de ativos CFTV/PTZ por meio da TAG.
 - Recuperar o histórico de falhas e intervenções desses equipamentos.
@@ -173,6 +170,21 @@ O projeto considera os riscos associados à utilização de Inteligência Artifi
 - O assistente não substitui profissionais habilitados nem procedimentos oficiais.
 - Hipóteses de diagnóstico deverão ser verificadas em campo.
 - A avaliação da solução nesta etapa será documental e baseada nos artefatos especificados, sem implementação de código ou integração real.
+
+
+## Documentação do projeto
+Os documentos abaixo complementam a descrição da arquitetura, das decisões técnicas, das regras de funcionamento e dos recursos previstos para o EngMan Copilot.
+
+| Documento | Descrição |
+|---|---|
+| [Arquitetura da solução](docs/arquitetura.png) | Diagrama visual do funcionamento e dos componentes da solução. |
+| [Decisões técnicas](docs/decisoes_tecnicas.md) | Comparação dos modelos de linguagem, bancos vetoriais e escolhas arquiteturais. |
+| [Riscos e LGPD](docs/riscos_lgpd.md) | Identificação dos riscos, impactos, medidas de mitigação e cuidados com dados. |
+| [System Prompt](prompts/system_prompt.md) | Instruções, regras, limites e comportamento esperado do assistente. |
+| [Eval Set](evals/sprint1_eval_set.json) | Casos de teste para avaliar qualidade, segurança e aderência ao escopo. |
+| [Especificação das Tools](tools/tools_spec.json) | Contratos de entrada e saída das quatro ferramentas do assistente. |
+| [Base de conhecimento](data/knowledge_base/inventario.md) | Inventário de ativos, fichas técnicas, históricos e dados simulados. |
+| [Arquivo de entrega da Sprint 01](sprint1_entrega.txt) | Identificação do projeto e endereço do repositório para submissão. |
 
 
 ## Referências
