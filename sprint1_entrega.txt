@@ -7,4 +7,4 @@ Integrantes:
 Anna Luisa Santos de Lima - RM 575081 - 1CCPR
 
 Repositorio: https://github.com/luusimass/EngMan_Copilot/tree/main
-Fluxograma: https: /excalidraw.com/#link-publico
+Fluxograma: https://excalidraw.com/#json=IsFkVdawe0UuysgqBT3o7,3j7ZO970pOWyqpWYAnBggA
