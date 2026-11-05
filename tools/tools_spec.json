@@ -1,0 +1,431 @@
+# Especificação de Ferramentas — EngMan Copilot
+
+**Arquivo:** `tools/tools_spec.json`  
+**Projeto:** EngMan Copilot — FIAP × Motiva Rodovias  
+**Recorte:** A — Diagnóstico e Confiabilidade
+
+O arquivo define as ferramentas disponíveis para o EngMan Copilot consultar informações de ativos, históricos de falhas, procedimentos e critérios de priorização.
+
+As quatro primeiras ferramentas compõem a proposta principal. A quinta é uma extensão opcional relacionada ao bônus de Engenharia de Confiabilidade previsto no briefing.
+
+Os dados utilizados nos exemplos e testes devem ser identificados como simulados, quando não forem provenientes de uma fonte real autorizada.
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project": "EngMan Copilot",
+  "version": "1.0.0",
+  "description": "Especificação dos contratos de entrada e saída das ferramentas do EngMan Copilot.",
+  "tools": [
+    {
+      "name": "consultar_ativo_por_tag",
+      "description": "Consulta o inventário para localizar um ativo por seu TAG e retornar suas informações cadastrais disponíveis.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "Identificador TAG do ativo que será consultado.",
+            "minLength": 1
+          }
+        },
+        "required": ["tag"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "encontrado": {
+            "type": "boolean"
+          },
+          "ativo": {
+            "type": ["object", "null"],
+            "properties": {
+              "tag": {
+                "type": "string"
+              },
+              "nome": {
+                "type": "string"
+              },
+              "categoria": {
+                "type": "string"
+              },
+              "localizacao": {
+                "type": "string"
+              },
+              "criticidade": {
+                "type": "string",
+                "enum": ["baixa", "media", "alta", "nao_informada"]
+              },
+              "fabricante": {
+                "type": ["string", "null"]
+              },
+              "modelo": {
+                "type": ["string", "null"]
+              }
+            },
+            "required": [
+              "tag",
+              "nome",
+              "categoria",
+              "localizacao",
+              "criticidade"
+            ],
+            "additionalProperties": false
+          },
+          "fonte": {
+            "type": "string"
+          },
+          "mensagem": {
+            "type": "string"
+          }
+        },
+        "required": ["encontrado", "ativo", "fonte", "mensagem"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "consultar_historico_falhas",
+      "description": "Consulta o histórico de falhas de um ativo identificado por TAG, permitindo filtrar os registros por período.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "TAG do ativo consultado.",
+            "minLength": 1
+          },
+          "data_inicio": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Data inicial do período de consulta."
+          },
+          "data_fim": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Data final do período de consulta."
+          },
+          "limite_registros": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "required": ["tag"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string"
+          },
+          "registros_encontrados": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "historico": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "descricao": {
+                  "type": "string"
+                },
+                "sintoma": {
+                  "type": "string"
+                },
+                "intervencao": {
+                  "type": ["string", "null"]
+                },
+                "resultado": {
+                  "type": ["string", "null"]
+                }
+              },
+              "required": [
+                "data",
+                "descricao",
+                "sintoma",
+                "intervencao",
+                "resultado"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "fonte": {
+            "type": "string"
+          },
+          "mensagem": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tag",
+          "registros_encontrados",
+          "historico",
+          "fonte",
+          "mensagem"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "consultar_procedimento",
+      "description": "Localiza procedimentos operacionais e documentos técnicos relacionados ao ativo, sintoma ou tipo de intervenção informado.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": ["string", "null"],
+            "description": "TAG do ativo, quando disponível."
+          },
+          "sintoma": {
+            "type": "string",
+            "description": "Descrição do sintoma ou problema observado.",
+            "minLength": 1
+          },
+          "tipo_intervencao": {
+            "type": ["string", "null"],
+            "enum": [
+              "corretiva",
+              "preventiva",
+              "inspecao",
+              "baseada_em_condicao",
+              null
+            ]
+          }
+        },
+        "required": ["sintoma"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "documentos_encontrados": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "procedimentos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "titulo": {
+                  "type": "string"
+                },
+                "identificador": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
+                },
+                "orientacoes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "fonte": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "titulo",
+                "identificador",
+                "descricao",
+                "orientacoes",
+                "fonte"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "mensagem": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "documentos_encontrados",
+          "procedimentos",
+          "mensagem"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "calcular_prioridade",
+      "description": "Avalia a prioridade de uma ocorrência com base nos critérios documentados na matriz de criticidade e priorização disponível.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "TAG do ativo relacionado à ocorrência.",
+            "minLength": 1
+          },
+          "descricao_ocorrencia": {
+            "type": "string",
+            "description": "Descrição objetiva da ocorrência observada.",
+            "minLength": 1
+          }
+        },
+        "required": ["tag", "descricao_ocorrencia"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string"
+          },
+          "prioridade": {
+            "type": ["string", "null"],
+            "enum": ["baixa", "media", "alta", "critica", null]
+          },
+          "criterios_considerados": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dados_faltantes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "justificativa": {
+            "type": "string"
+          },
+          "fonte_matriz": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "tag",
+          "prioridade",
+          "criterios_considerados",
+          "dados_faltantes",
+          "justificativa",
+          "fonte_matriz"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "calcular_metricas_confiabilidade",
+      "description": "Ferramenta complementar para calcular métricas de confiabilidade a partir de dados de operação e falhas disponíveis. Não deve estimar resultados quando os dados forem insuficientes.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "TAG do ativo analisado.",
+            "minLength": 1
+          },
+          "metrica": {
+            "type": "string",
+            "enum": ["lambda", "R(t)", "RGA", "LDA"],
+            "description": "Métrica ou método de análise solicitado."
+          },
+          "tempo_operacao": {
+            "type": ["number", "null"],
+            "exclusiveMinimum": 0,
+            "description": "Tempo total de operação observado, na unidade informada."
+          },
+          "quantidade_falhas": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          },
+          "tempo_missao": {
+            "type": ["number", "null"],
+            "exclusiveMinimum": 0,
+            "description": "Tempo de missão utilizado no cálculo de R(t), na mesma unidade do tempo de operação."
+          },
+          "tempos_ate_falha": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "description": "Tempos observados até a falha, necessários para análises baseadas em dados de vida."
+          },
+          "unidade_tempo": {
+            "type": "string",
+            "enum": ["horas", "dias", "meses", "anos"]
+          },
+          "modelo_estatistico": {
+            "type": ["string", "null"],
+            "enum": ["exponencial", "weibull", null]
+          }
+        },
+        "required": ["tag", "metrica", "unidade_tempo"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string"
+          },
+          "metrica": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": ["number", "null"]
+          },
+          "unidade": {
+            "type": ["string", "null"]
+          },
+          "metodo_utilizado": {
+            "type": "string"
+          },
+          "premissas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dados_faltantes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "interpretacao": {
+            "type": "string"
+          },
+          "fonte_dados": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "tag",
+          "metrica",
+          "resultado",
+          "unidade",
+          "metodo_utilizado",
+          "premissas",
+          "dados_faltantes",
+          "interpretacao",
+          "fonte_dados"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
+```
+
+## Regras de utilização
+
+1. As consultas devem utilizar TAGs e informações existentes nas fontes disponíveis.
+2. A ausência de registros deve ser informada explicitamente, sem criação de dados.
+3. A prioridade deve ser fundamentada na matriz de criticidade documentada.
+4. Procedimentos retornados não substituem normas, treinamentos ou orientações oficiais de segurança.
+5. A ferramenta de métricas de confiabilidade é complementar e depende da disponibilidade de dados suficientes.
+6. Toda resposta deve identificar as fontes utilizadas e diferenciar dados reais de dados simulados.
