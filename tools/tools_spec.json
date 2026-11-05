@@ -1,16 +1,3 @@
-# Especificação de Ferramentas — EngMan Copilot
-
-**Arquivo:** `tools/tools_spec.json`  
-**Projeto:** EngMan Copilot — FIAP × Motiva Rodovias  
-**Recorte:** A — Diagnóstico e Confiabilidade
-
-O arquivo define as ferramentas disponíveis para o EngMan Copilot consultar informações de ativos, históricos de falhas, procedimentos e critérios de priorização.
-
-As quatro primeiras ferramentas compõem a proposta principal. A quinta é uma extensão opcional relacionada ao bônus de Engenharia de Confiabilidade previsto no briefing.
-
-Os dados utilizados nos exemplos e testes devem ser identificados como simulados, quando não forem provenientes de uma fonte real autorizada.
-
-```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "project": "EngMan Copilot",
@@ -419,13 +406,3 @@ Os dados utilizados nos exemplos e testes devem ser identificados como simulados
     }
   ]
 }
-```
-
-## Regras de utilização
-
-1. As consultas devem utilizar TAGs e informações existentes nas fontes disponíveis.
-2. A ausência de registros deve ser informada explicitamente, sem criação de dados.
-3. A prioridade deve ser fundamentada na matriz de criticidade documentada.
-4. Procedimentos retornados não substituem normas, treinamentos ou orientações oficiais de segurança.
-5. A ferramenta de métricas de confiabilidade é complementar e depende da disponibilidade de dados suficientes.
-6. Toda resposta deve identificar as fontes utilizadas e diferenciar dados reais de dados simulados.
