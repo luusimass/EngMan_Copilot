@@ -1,10 +1,15 @@
 CHALLENGE SPRINT 01 - ENGMAN COPILOT (FIAP x MOTIVA)
 
-Grupo: 02 - Turma 1CCPR
+Grupo: 01 - Turma 1CCPR
 Recorte escolhido: A - Diagnostico e Confiabilidade
 
 Integrantes:
 Anna Luisa Santos de Lima - RM 575081 - 1CCPR
+Fernando Azevedo Costa - RM575676  - 1CCPR
+Gustavo Fidelis de Souza e Silva - RM574666  - 1CCPR
+Luan Mantovani Ferreira Neres - RM574563 - 1CCPR
+Pedro Henrique Cembrone de Sá - RM576731  - 1CCPR
+Rafael Meireles Carvalho - RM574897  - 1CCPR
 
 Repositorio: https://github.com/luusimass/EngMan_Copilot/tree/main
 Fluxograma: https://excalidraw.com/#json=IsFkVdawe0UuysgqBT3o7,3j7ZO970pOWyqpWYAnBggA
