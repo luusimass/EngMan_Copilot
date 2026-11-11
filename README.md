@@ -2,7 +2,15 @@
 *CIRA — Confiabilidade Inteligente e Reconhecimento de Alterações*
 
 ## Identificação
-- Anna Luisa Santos de Lima - RM 575081 - 1CCPR
+| Nome | RM | Turma |
+| --- | --- | --- |
+| Anna Luisa Santos de Lima | RM 575081 | 1CCPR |
+| Fernando Azevedo Costa | RM575676 | 1CCPR |
+| Gustavo Fidelis de Souza e Silva | RM574666 | 1CCPR|
+| Luan Mantovani Ferreira Neres | RM574563 | 1CCPR |
+| Pedro Henrique Cembrone de Sá | RM576731 | 1CCPR |
+| Rafael Meireles Carvalho | RM574897 | 1CCPR |
+
 
 
 ## Problema abordado
